@@ -1,9 +1,11 @@
 package main
 
 import (
-	"main/analysis/logcheck"
+	"main/pkg/logcheck"
+
+	"golang.org/x/tools/go/analysis/singlechecker"
 )
 
 func main() {
-	logcheck.StartApp()
+	singlechecker.Main(logcheck.BuildAnalizer(logcheck.DefaultConfig()))
 }
