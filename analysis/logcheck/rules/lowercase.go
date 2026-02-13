@@ -1,19 +1,21 @@
 package rules
 
 import (
-	"go/ast"
+	"errors"
 	"unicode"
-
-	"golang.org/x/tools/go/analysis"
 )
 
-func CheckLowercaseRule(pass *analysis.Pass, lit *ast.BasicLit, msg string) {
+var LowercaseRuleError = errors.New("log message should start with a lowercase letter")
+
+func CheckLowercaseRule(msg string) error {
 	if len(msg) == 0 {
-		return
+		return nil
 	}
 
 	firstChar := []rune(msg)[0]
 	if unicode.IsUpper(firstChar) {
-		pass.Reportf(lit.Pos(), "log message should start with a lowercase letter: %s", msg)
+		return LowercaseRuleError
 	}
+
+	return nil
 }

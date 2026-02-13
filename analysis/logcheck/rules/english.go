@@ -1,16 +1,17 @@
 package rules
 
 import (
-	"go/ast"
-
-	"golang.org/x/tools/go/analysis"
+	"errors"
 )
 
-func CheckEnglishRule(pass *analysis.Pass, lit *ast.BasicLit, msg string) {
+var EnglishRuleError = errors.New("log message should have english characters only")
+
+func CheckEnglishRule(msg string) error {
 	for _, r := range msg {
 		if r > 127 {
-			pass.Reportf(lit.Pos(), "log message should have english characters only: %s", msg)
-			return
+			return EnglishRuleError
 		}
 	}
+
+	return nil
 }
