@@ -65,6 +65,10 @@ func run(pass *analysis.Pass) (interface{}, error) {
 		if err := rules.CheckSecretRule(msg); err != nil {
 			pass.Reportf(lit.Pos(), err.Error()+": %s", render(pass.Fset, ce))
 		}
+
+		if err := rules.CheckSpecialRule(msg); err != nil {
+			pass.Reportf(lit.Pos(), err.Error()+": %s", render(pass.Fset, ce))
+		}
 	})
 
 	return nil, nil

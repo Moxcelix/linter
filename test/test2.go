@@ -8,5 +8,5 @@ func b() {
 	logger, _ := zap.NewProduction()
 
 	logger.Info("PepeваФпа")
-	logger.Info("ApiKey: dsfsdfsdfsdf")
+	logger.Info("ApiKey: dsfsdfsdfsdf ✅")
 }
