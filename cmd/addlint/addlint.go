@@ -1,7 +1,8 @@
 package main
 
 import (
-	"github.com/fatih/addlint/addcheck"
+	"main/analysis/addcheck"
+
 	"golang.org/x/tools/go/analysis/singlechecker"
 )
 
