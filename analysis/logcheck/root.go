@@ -7,6 +7,7 @@ import (
 	"main/analysis/logcheck/service"
 
 	"go.uber.org/fx"
+	"go.uber.org/fx/fxevent"
 	"golang.org/x/tools/go/analysis"
 	"golang.org/x/tools/go/analysis/passes/inspect"
 	"golang.org/x/tools/go/analysis/singlechecker"
@@ -36,6 +37,9 @@ func StartApp() {
 	)
 
 	app := fx.New(
+		fx.WithLogger(func() fxevent.Logger {
+			return fxevent.NopLogger
+		}),
 		CommonModules,
 		opts,
 	)
