@@ -7,7 +7,13 @@ import (
 
 var LowercaseRuleError = errors.New("log message should start with a lowercase letter")
 
-func CheckLowercaseRule(msg string) error {
+type LowercaseRule struct{}
+
+func NewLowercaseRule() *LowercaseRule {
+	return &LowercaseRule{}
+}
+
+func (rule *LowercaseRule) Check(msg string) error {
 	if len(msg) == 0 {
 		return nil
 	}

@@ -5,13 +5,25 @@ import (
 	"slices"
 )
 
-var specialChars = []rune{'!', '?', '.', ',', ':', ';', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '{', '}', '[', ']', '|', '\\', '/', '<', '>', '~', '`'}
-
 var SpecialRuleError = errors.New("log message should not contain special characters")
 
-func CheckSpecialRule(msg string) error {
+type SpecialRule struct {
+	specialChars []rune
+}
+
+type SpecialSymbolsProvider interface {
+	Provide() []rune
+}
+
+func NewSpecialRule(specialSymbolsProvider SpecialSymbolsProvider) *SpecialRule {
+	return &SpecialRule{
+		specialChars: specialSymbolsProvider.Provide(),
+	}
+}
+
+func (rule *SpecialRule) Check(msg string) error {
 	for _, char := range msg {
-		if slices.Contains(specialChars, char) {
+		if slices.Contains(rule.specialChars, char) {
 			return SpecialRuleError
 		}
 	}

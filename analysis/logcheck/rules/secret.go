@@ -7,12 +7,24 @@ import (
 
 var SecretRuleError = errors.New("log message should not contain any secret data")
 
-var secretData = []string{"apikey", "api-key", "api_key", "token", "jwt_token", "jwt-token", "secret", "key"}
+type SecretRule struct {
+	secretData []string
+}
 
-func CheckSecretRule(msg string) error {
+type SecretProvider interface {
+	Provide() []string
+}
+
+func NewSecretRule(secretProvider SecretProvider) *SecretRule {
+	return &SecretRule{
+		secretData: secretProvider.Provide(),
+	}
+}
+
+func (rule *SecretRule) Check(msg string) error {
 	msg = strings.ToLower(msg)
 
-	for _, secret := range secretData {
+	for _, secret := range rule.secretData {
 		if strings.Contains(msg, secret) {
 			return SecretRuleError
 		}

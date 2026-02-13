@@ -6,7 +6,13 @@ import (
 
 var EnglishRuleError = errors.New("log message should have english characters only")
 
-func CheckEnglishRule(msg string) error {
+type EnglishRule struct{}
+
+func NewEnglishRule() *EnglishRule {
+	return &EnglishRule{}
+}
+
+func (rule *EnglishRule) Check(msg string) error {
 	for _, r := range msg {
 		if r > 127 {
 			return EnglishRuleError
