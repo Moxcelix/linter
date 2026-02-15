@@ -8,11 +8,11 @@ import (
 var SpecialRuleError = errors.New("log message should not contain special characters")
 
 type SpecialRule struct {
-	specialChars []rune
+	specialChars []string
 }
 
 type SpecialSymbolsProvider interface {
-	Provide() []rune
+	Provide() []string
 }
 
 func NewSpecialRule(specialSymbolsProvider SpecialSymbolsProvider) *SpecialRule {
@@ -23,7 +23,7 @@ func NewSpecialRule(specialSymbolsProvider SpecialSymbolsProvider) *SpecialRule 
 
 func (rule *SpecialRule) Check(msg string) error {
 	for _, char := range msg {
-		if slices.Contains(rule.specialChars, char) {
+		if slices.Contains(rule.specialChars, string(char)) {
 			return SpecialRuleError
 		}
 	}

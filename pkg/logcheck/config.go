@@ -6,28 +6,28 @@ type Config struct {
 }
 
 type RulesConfig struct {
-	English   EnglishRuleConfig   `json:"english" yaml:"english"`
-	Lowercase LowercaseRuleConfig `json:"lowercase" yaml:"lowercase"`
-	Secret    SecretRuleConfig    `json:"secret" yaml:"secret"`
-	Special   SpecialRuleConfig   `json:"special" yaml:"special"`
+	English   EnglishRuleConfig   `json:"english-rule" yaml:"english-rule"`
+	Lowercase LowercaseRuleConfig `json:"lowercase-rule" yaml:"lowercase-rule"`
+	Secret    SecretRuleConfig    `json:"secret-rule" yaml:"secret-rule"`
+	Special   SpecialRuleConfig   `json:"special-rule" yaml:"special-rule"`
 }
 
 type EnglishRuleConfig struct {
-	Enabled bool `json:"enabled" yaml:"enabled"`
+	Enabled string `json:"enabled" yaml:"enabled"`
 }
 
 type LowercaseRuleConfig struct {
-	Enabled bool `json:"enabled" yaml:"enabled"`
+	Enabled string `json:"enabled" yaml:"enabled"`
 }
 
 type SecretRuleConfig struct {
-	Enabled bool     `json:"enabled" yaml:"enabled"`
+	Enabled string   `json:"enabled" yaml:"enabled"`
 	Words   []string `json:"words" yaml:"words"`
 }
 
 type SpecialRuleConfig struct {
-	Enabled bool   `json:"enabled" yaml:"enabled"`
-	Chars   []rune `json:"chars" yaml:"chars"`
+	Enabled string   `json:"enabled" yaml:"enabled"`
+	Chars   []string `json:"chars" yaml:"chars"`
 }
 
 type LoggerConfig struct {
@@ -45,13 +45,13 @@ func DefaultConfig() *Config {
 	return &Config{
 		Rules: RulesConfig{
 			English: EnglishRuleConfig{
-				Enabled: true,
+				Enabled: "true",
 			},
 			Lowercase: LowercaseRuleConfig{
-				Enabled: true,
+				Enabled: "true",
 			},
 			Secret: SecretRuleConfig{
-				Enabled: true,
+				Enabled: "true",
 				Words: []string{
 					"password", "passwd",
 					"token", "secret", "key",
@@ -59,9 +59,9 @@ func DefaultConfig() *Config {
 				},
 			},
 			Special: SpecialRuleConfig{
-				Enabled: true,
-				Chars: []rune{
-					'!', '@', '#', '$', '%', '^', '&', '*',
+				Enabled: "true",
+				Chars: []string{
+					"!", "@", "#", "$", "%", "^", "&", "*",
 				},
 			},
 		},

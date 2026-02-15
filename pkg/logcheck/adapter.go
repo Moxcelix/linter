@@ -9,9 +9,9 @@ func (p SecretProvider) Provide() []string {
 }
 
 type SpecialProvider struct {
-	data []rune
+	data []string
 }
 
-func (p SpecialProvider) Provide() []rune {
+func (p SpecialProvider) Provide() []string {
 	return p.data
 }

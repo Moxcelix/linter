@@ -5,16 +5,16 @@ import (
 )
 
 type MockSpecialSymbolsProvider struct {
-	symbols []rune
+	symbols []string
 }
 
-func (m *MockSpecialSymbolsProvider) Provide() []rune {
+func (m *MockSpecialSymbolsProvider) Provide() []string {
 	return m.symbols
 }
 
 func TestSpecialRule_Check(t *testing.T) {
 	provider := &MockSpecialSymbolsProvider{
-		symbols: []rune{'!', '@', '#', '$', '%', '^', '&', '*'},
+		symbols: []string{"!", "@", "#", "$", "%", "^", "&", "*"},
 	}
 	rule := NewSpecialRule(provider)
 
