@@ -4,6 +4,7 @@ import (
 	"linters/pkg/logcheck"
 
 	"github.com/golangci/plugin-module-register/register"
+	_ "go.uber.org/zap"
 	"golang.org/x/tools/go/analysis"
 )
 

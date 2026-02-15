@@ -98,3 +98,9 @@ golangci-lint custom
 ./custom-gcl run ./testdata/test2.go
 ```
 The test data for your best expirience is provided
+
+7. Example of use
+
+This is an example of use for /testdata/test.go
+
+![use example](picture/image.png)
