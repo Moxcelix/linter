@@ -9,4 +9,7 @@ func b() {
 
 	logger.Info("PepeваФпа")
 	logger.Info("ApiKey: dsfsdfsdfsdf ✅")
+	logger.Info("/")
+	logger.Info("!")
+	logger.Info("!")
 }

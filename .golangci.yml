@@ -1,0 +1,38 @@
+version: "2"
+linters:
+  default: none
+  enable:
+    - logcheck
+
+  settings:
+    custom:
+      logcheck:
+        type: module
+        description: checks log messages for proper format
+        settings:
+          rules:
+            english-rule:
+              enabled: true
+            lowercase-rule:
+              enabled: true
+            secret-rule:
+              enabled: true
+              words: ["password", "passwd", "token", "secret", "key", "api_key", "apikey"]
+            special-rule:
+              enabled: true
+              chars: ["!", "@", "#", "$", "%", "^", "&", "*"]
+
+          loggers:
+            - pkg_name: "go.uber.org/zap"
+              logger_obj:
+                - name: "Logger"
+                  methods: ["Debug", "Info", "Warn", "Error", "DPanic", "Panic", "Fatal", "Debugf", "Infof", "Warnf", "Errorf", "DPanicf", "Panicf", "Fatalf", "Debugw", "Infow", "Warnw", "Errorw", "DPanicw", "Panicw", "Fatalw", "With", "Named", "WithOptions", "Core", "Check", "Sugar"]
+                - name: "SugaredLogger"
+                  methods: ["Debug", "Info", "Warn", "Error", "DPanic", "Panic", "Fatal", "Debugf", "Infof", "Warnf", "Errorf", "DPanicf", "Panicf", "Fatalf", "Debugw", "Infow", "Warnw", "Errorw", "DPanicw", "Panicw", "Fatalw", "With", "Named", "Desugar"]
+              funcs: []
+
+            - pkg_name: "log/slog"
+              logger_obj:
+                - name: "Logger"
+                  methods: ["Debug", "Info", "Warn", "Error", "DebugContext", "InfoContext", "WarnContext", "ErrorContext", "Log", "LogContext", "Enabled", "Handler", "With", "WithGroup"]
+              funcs: ["Debug", "Info", "Warn", "Error", "DebugContext", "InfoContext", "WarnContext", "ErrorContext", "Log", "LogContext", "Default", "SetDefault", "New", "NewJSONHandler", "NewTextHandler", "With", "NewRecord", "NewLogLogger"]
