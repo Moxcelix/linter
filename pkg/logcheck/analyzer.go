@@ -35,19 +35,19 @@ type Rule interface {
 
 func (linter *LogcheckLinter) run(pass *analysis.Pass) (interface{}, error) {
 	var rulesList []Rule
-	if linter.cfg.Rules.English.Enabled == "true" {
+	if linter.cfg.Rules.English.Enabled {
 		rulesList = append(rulesList, rules.NewEnglishRule())
 	}
 
-	if linter.cfg.Rules.Lowercase.Enabled == "true" {
+	if linter.cfg.Rules.Lowercase.Enabled {
 		rulesList = append(rulesList, rules.NewLowercaseRule())
 	}
 
-	if linter.cfg.Rules.Secret.Enabled == "true" {
+	if linter.cfg.Rules.Secret.Enabled {
 		rulesList = append(rulesList, rules.NewSecretRule(SecretProvider{linter.cfg.Rules.Secret.Words}))
 	}
 
-	if linter.cfg.Rules.Special.Enabled == "true" {
+	if linter.cfg.Rules.Special.Enabled {
 		rulesList = append(rulesList, rules.NewSpecialRule(SpecialProvider{linter.cfg.Rules.Special.Chars}))
 	}
 

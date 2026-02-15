@@ -13,20 +13,20 @@ type RulesConfig struct {
 }
 
 type EnglishRuleConfig struct {
-	Enabled string `json:"enabled" yaml:"enabled"`
+	Enabled bool `json:"enabled" yaml:"enabled"`
 }
 
 type LowercaseRuleConfig struct {
-	Enabled string `json:"enabled" yaml:"enabled"`
+	Enabled bool `json:"enabled" yaml:"enabled"`
 }
 
 type SecretRuleConfig struct {
-	Enabled string   `json:"enabled" yaml:"enabled"`
+	Enabled bool     `json:"enabled" yaml:"enabled"`
 	Words   []string `json:"words" yaml:"words"`
 }
 
 type SpecialRuleConfig struct {
-	Enabled string   `json:"enabled" yaml:"enabled"`
+	Enabled bool     `json:"enabled" yaml:"enabled"`
 	Chars   []string `json:"chars" yaml:"chars"`
 }
 
@@ -45,13 +45,13 @@ func DefaultConfig() *Config {
 	return &Config{
 		Rules: RulesConfig{
 			English: EnglishRuleConfig{
-				Enabled: "true",
+				Enabled: true,
 			},
 			Lowercase: LowercaseRuleConfig{
-				Enabled: "true",
+				Enabled: true,
 			},
 			Secret: SecretRuleConfig{
-				Enabled: "true",
+				Enabled: true,
 				Words: []string{
 					"password", "passwd",
 					"token", "secret", "key",
@@ -59,7 +59,7 @@ func DefaultConfig() *Config {
 				},
 			},
 			Special: SpecialRuleConfig{
-				Enabled: "true",
+				Enabled: true,
 				Chars: []string{
 					"!", "@", "#", "$", "%", "^", "&", "*",
 				},
