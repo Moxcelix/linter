@@ -6,7 +6,7 @@ func b() {
 	logger, _ := zap.NewProduction()
 
 	logger.Info("PepeваФпа")
-	logger.Info("ApiKey: dsfsdfsdfsdf ✅")
+	logger.Info("api_key: dsfsdfsdfsdf ✅")
 	logger.Info("/")
 	logger.Info("!")
 	logger.Info("!")
